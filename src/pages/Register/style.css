@@ -1,4 +1,10 @@
-
+ /* Containe principal */
+ .register-container-centralizar{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
 
 /* Container principal */
 .register-container {

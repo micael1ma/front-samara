@@ -1,8 +1,14 @@
-/* Container principal */
-.login-container {
+ /* Containe principal */
+ .login-container-centralizar{
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+ }
+
+/* Container centralizado */
+.login-container {
+  display: flex;
   height: 400px;
   width: 800px;
 }

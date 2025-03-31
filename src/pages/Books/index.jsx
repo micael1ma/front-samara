@@ -3,7 +3,7 @@ import './style.css';
 
 import { useState, useEffect, useRef } from 'react';
 
-function Books() {
+function Home() {
   const [books, setBooks] = useState([]);
 
   const [title, setTitle] = useState('');
@@ -48,10 +48,11 @@ function Books() {
   }
 
   return (
-    <div>
-      <form onSubmit={createBook}>
+    <div className="home-container">
+      <form className="home-form" onSubmit={createBook}>
         <h1>Adicionar novo livro</h1>
         <input
+          className="home-input"
           placeholder="Título"
           name="titulo"
           ref={inputTitle}
@@ -59,18 +60,21 @@ function Books() {
           onChange={(e) => setTitle(e.target.value)}
         />
         <input
+          className="home-input"
           placeholder="Autor"
           name="author"
           ref={inputAuthor}
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
         />
-        <button type="subbmit">Adicionar</button>
+        <button className="home-button" type="subbmit">
+          Adicionar
+        </button>
       </form>
 
       {books.map((book) => (
         <div key={book.id}>
-          <div>
+          <div className="home-book-container">
             <p>
               Titulo: <span>{book.name}</span>
             </p>
@@ -84,4 +88,4 @@ function Books() {
   );
 }
 
-export default Books;
+export default Home;

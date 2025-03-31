@@ -35,51 +35,53 @@ function Register() {
   }
 
   return (
-    <div className="register-container">
-      <div className="register-image-container">
-        <img src={boolImage} alt="Livros" />
-      </div>
+    <div className="register-container-centralizar">
+      <div className="register-container">
+        <div className="register-image-container">
+          <img src={boolImage} alt="Livros" />
+        </div>
 
-      <form className="register-form" onSubmit={handleRegister}>
-        <h1>Criar conta</h1>
-        <input
-          className="register-input"
-          type="name"
-          placeholder="Nome"
-          name="name"
-          ref={inputName}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          className="register-input"
-          type="email"
-          placeholder="Email"
-          name="email"
-          ref={inputEmail}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          className="register-input"
-          type="password"
-          placeholder="Senha"
-          name="password"
-          ref={inputPassword}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button
-          className="register-button-redirect"
-          type="button"
-          onClick={() => navigate('/')}
-        >
-          Ja tenho uma conta
-        </button>
-        <button className="register-button" type="submit">
-          Criar conta
-        </button>
-      </form>
+        <form className="register-form" onSubmit={handleRegister}>
+          <h1>Criar conta</h1>
+          <input
+            className="register-input"
+            type="name"
+            placeholder="Nome"
+            name="name"
+            ref={inputName}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            className="register-input"
+            type="email"
+            placeholder="Email"
+            name="email"
+            ref={inputEmail}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            className="register-input"
+            type="password"
+            placeholder="Senha"
+            name="password"
+            ref={inputPassword}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button
+            className="register-button-redirect"
+            type="button"
+            onClick={() => navigate('/login')}
+          >
+            Ja tenho uma conta
+          </button>
+          <button className="register-button" type="submit">
+            Criar conta
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
