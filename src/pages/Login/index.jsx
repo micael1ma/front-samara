@@ -24,8 +24,8 @@ function Login() {
     try {
       const response = await api.post('/api/login', credentials);
       const token = response.data.token;
-      localStorage.setItem('authToken', token); 
-      window.location.href = '/home'; // Redireciona para a tela Home
+      localStorage.setItem('authToken', token);
+      window.location.href = '/'; // Redireciona para a tela Home
     } catch (error) {
       alert('Erro ao fazer login.');
     }
