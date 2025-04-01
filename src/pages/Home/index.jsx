@@ -7,10 +7,22 @@ import { useState, useEffect } from 'react';
 function Home() {
   const [books, setBooks] = useState([]);
   const user = localStorage.getItem('userName');
-  
+
   async function getBooks() {
     const responseBooks = await api.get('/api/book');
-    setBooks(responseBooks.data);
+    const allBooks = responseBooks.data;
+
+    let availableBooks = [];
+    for (const book of allBooks) {
+      if (book.rented === false) {
+        availableBooks.push(book);
+      }
+    }
+    setBooks(availableBooks);
+  }
+
+  async function landBook() {
+    await api.get('/api/bookrent');
   }
 
   useEffect(() => {
