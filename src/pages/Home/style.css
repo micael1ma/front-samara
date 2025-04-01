@@ -31,8 +31,16 @@
   color: #f7f7f7;
 }
 
-.home-header p{
+.home-header button{
+  background: none;
+  border: none;
+  padding: 8px;
   color: #f7f7f7;
+  cursor: pointer;
+}
+
+.home-header button:hover{
+  color: #4682b4;
 }
 
 .home-titulo{

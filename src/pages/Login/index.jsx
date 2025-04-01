@@ -23,18 +23,18 @@ function Login() {
 
     try {
       const response = await api.post('/api/login', credentials);
-      const userID = response.data.user._id;
+      const userId = response.data.user._id;
       const userName = response.data.user.name;
       const token = response.data.token;
 
-      console.log(userID)
-      console.log(userName)
-      console.log(token)
+      console.log(userId);
+      console.log(userName);
+      console.log(token);
 
-      localStorage.setItem('userID', userID);
+      localStorage.setItem('userId', userId);
       localStorage.setItem('userName', userName);
       localStorage.setItem('authToken', token);
-      window.location.href = '/';  // Redireciona para a tela Home
+      window.location.href = '/'; // Redireciona para a tela Home
     } catch (error) {
       alert('Erro ao fazer login.');
     }
