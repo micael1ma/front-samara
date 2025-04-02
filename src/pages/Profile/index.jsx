@@ -2,31 +2,28 @@ import api from '../../services/api';
 import './style.css';
 import bookImage from '../../assets/book.png';
 
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const navigate = useNavigate();
-  const [books, setBooks] = useState([]);
+
   const user = localStorage.getItem('userName');
   const userId = localStorage.getItem('userId');
   const token = localStorage.getItem('authToken');
 
+  const [books, setBooks] = useState([]);
+
   async function getBooks() {
-    const responseBooks = await api.get('/api/book');
-    const allBooks = responseBooks.data;
-    const availableBooks = allBooks.filter((book) => !book.rented);
-    setBooks(availableBooks);
+    const responseBooks = await api.get(`/api/booksByUser/${userId}`);
+    setBooks(responseBooks.data.books);
   }
 
-  async function landBook(bookId) {
+  async function returnBook(bookId) {
     try {
       await api.put(
-        `/api/bookrent/${bookId}`,
-        {
-          userId: userId,
-        },
+        `/api/bookrenturn/${bookId}`,
+        {},
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -35,13 +32,13 @@ function Home() {
       );
       getBooks();
     } catch (error) {
-      alert('Erro ao pegar livro.');
+      alert('Erro ao devolver livro.');
     }
   }
 
   async function logOut() {
     localStorage.clear();
-    navigate('/login');
+    window.location.reload();
   }
 
   useEffect(() => {
@@ -54,7 +51,7 @@ function Home() {
         <header className="home-header">
           <div>
             <img src={bookImage} alt="Livros" />
-            <h1>Bem vindo {user}</h1>
+            <h1>Seu Perfil</h1>
           </div>
           <div>
             <button type="button" onClick={() => navigate('/')}>
@@ -68,13 +65,15 @@ function Home() {
         </header>
 
         <div className="home-grid">
-          <h1 className="home-titulo">Livros disponiveis</h1>
+          <h1 className="home-titulo">Livros emprestados</h1>
           {books.map((book) => (
             <div className="home-livro-container" key={book.id}>
               <img src={book.imgUrl} alt="Book Cover" />
               <div className="home-book-info">
                 <p>{book.name}</p>
-                <button onClick={() => landBook(book._id)}>Alugar</button>
+                <button onClick={() => returnBook(book._id)}>
+                  Devolver
+                </button>
               </div>
             </div>
           ))}

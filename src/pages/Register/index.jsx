@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import api from '../../services/api';
 import './style.css';
-import boolImage from '../../assets/book.png';
+import bookImage from '../../assets/book.png';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -38,7 +38,7 @@ function Register() {
     <div className="register-container-centralizar">
       <div className="register-container">
         <div className="register-image-container">
-          <img src={boolImage} alt="Livros" />
+          <img src={bookImage} alt="Livros" />
         </div>
 
         <form className="register-form" onSubmit={handleRegister}>

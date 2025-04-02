@@ -5,7 +5,8 @@ import './index.css';
 import Home from '../src/pages/Home';
 import Login from '../src/pages/Login';
 import Register from '../src/pages/Register';
-import User from '../src/pages/User';
+import Profile from '../src/pages/Profile';
+
 import PrivateRoute from './components/privateRoute';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -17,7 +18,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<PrivateRoute element={<Home />} />} />
-        <Route path="/user" element={<PrivateRoute element={<User />} />} />
+        <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

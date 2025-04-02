@@ -1,4 +1,4 @@
-import boolImage from '../../assets/book.png';
+import bookImage from '../../assets/book.png';
 import './login.css';
 import api from '../../services/api';
 import { useState, useRef } from 'react';
@@ -23,13 +23,10 @@ function Login() {
 
     try {
       const response = await api.post('/api/login', credentials);
+
       const userId = response.data.user._id;
       const userName = response.data.user.name;
       const token = response.data.token;
-
-      console.log(userId);
-      console.log(userName);
-      console.log(token);
 
       localStorage.setItem('userId', userId);
       localStorage.setItem('userName', userName);
@@ -44,7 +41,7 @@ function Login() {
     <div className="login-container-centralizar">
       <div className="login-container">
         <div className="login-image-container">
-          <img src={boolImage} alt="Livros" />
+          <img src={bookImage} alt="Livros" />
         </div>
 
         <form className="login-form" onSubmit={handleLogin}>
