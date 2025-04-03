@@ -1,0 +1,26 @@
+.user-list-grid {
+  background-color: #f7f7f7;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 0px  0px 8px 8px;
+}
+
+.user-list-title {
+  text-align: center;
+  padding: 16px;
+  color: #4682b4;
+}
+
+.user-list-users-container {
+  display: flex;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.user-list-users-info p {
+  font-size: 16px;
+}

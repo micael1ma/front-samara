@@ -1,9 +1,7 @@
 // Api
 import api from '../../services/api';
-
 //Css
 import './style.css';
-
 //Components
 import AddBook from '../../components/addBook';
 import Header from '../../components/header';
@@ -46,18 +44,16 @@ function Admin() {
   }, []);
 
   return (
-    <div className="home-container-cretralizar">
-      <div className="home-container">
+    <div className="container-cretralizar">
+      <div className="book-list-container">
         <Header />
-        <div className="home-grid">
-          <h1 className="home-titulo">Livros disponiveis</h1>
-
-          <AddBook />
-
+        <div className="book-list-grid">
+          <h1 className="book-list-title">Livros disponiveis</h1>
+          {/* <AddBook /> */}
           {books.map((book) => (
-            <div className="home-livro-container" key={book._id}>
+            <div className="book-list-books-container" key={book._id}>
               <img src={book.imgUrl} alt="Book Cover" />
-              <div className="home-book-info">
+              <div className="book-list-books-info">
                 <p>{book.name}</p>
                 <p>{book.user && book.user.name ? 'Alugado' : 'Não alugado'}</p>
                 <p>
@@ -71,18 +67,18 @@ function Admin() {
           ))}
         </div>
 
-        <div className="home-grid">
-          <h1 className="home-titulo">Usuarios</h1>
+        <div className="user-list-grid">
+          <h1 className="user-list-title">Usuarios</h1>
           {users.map((user) => (
-            <div className="home-livro-container" key={user._id}>
-              <div className="home-book-info">
-                <p>{user.name}</p>
-                <p>{user.email}</p>
+            <div className="user-list-users-container" key={user._id}>
+              <div className="user-list-users-info">
+                <p>Name: {user.name}</p>
+                <p>Email: {user.email}</p>
+                <p>Books rented: 1</p>
               </div>
             </div>
           ))}
         </div>
-
         <Footer />
       </div>
     </div>

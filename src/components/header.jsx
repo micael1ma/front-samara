@@ -9,7 +9,7 @@ const Header = () => {
   function getWelcome() {
     if (location.pathname === '/') return `Bem vindo ${user}`;
     if (location.pathname === '/profile') return `Seu perfil`;
-    if (location.pathname === '/admin') return 'Adimin';
+    if (location.pathname === '/admin') return 'Admin';
     return 'Not defined';
   }
 
@@ -31,10 +31,16 @@ const Header = () => {
         <button className={isActive('/')} onClick={() => navigate('/')}>
           Acervo
         </button>
-        <button className={isActive('/profile')} onClick={() => navigate('/profile')}>
+        <button
+          className={isActive('/profile')}
+          onClick={() => navigate('/profile')}
+        >
           Seu perfil
         </button>
-        <button className={isActive('/admin')} onClick={() => navigate('/admin')}>
+        <button
+          className={isActive('/admin')}
+          onClick={() => navigate('/admin')}
+        >
           Administrador
         </button>
         <button onClick={logOut}>Sair</button>

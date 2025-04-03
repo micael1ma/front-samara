@@ -1,23 +1,9 @@
-.home-container-cretralizar{
-  display: flex;
-  justify-content: center;
-  background: linear-gradient(45deg, #4682b4, #b0e0e6);
- }
-
-.home-container {
+.book-list-container {
   display: flex;
   flex-direction: column;
 }
 
-
-
-.home-titulo{
-  align-self: center;
-  padding: 16px;
-  color: #4682b4;
-}
-
-.home-grid{
+.book-list-grid{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
@@ -25,16 +11,20 @@
   gap: 20px;
   background-color: #f7f7f7;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 8px  8px 0px 0px;
  
 
 }
 
-.home-titulo{
+.book-list-title{
   grid-column: 1 / -1;
+  align-self: center;
+  padding: 16px;
+  color: #4682b4;
 }
 
-.home-livro-container {
+
+.book-list-books-container {
   display: flex;
   background-color: #ffffff;
   padding: 16px;
@@ -43,13 +33,13 @@
   width: 330px;
 }
 
-.home-livro-container img {
+.book-list-books-container img {
   height: 150px;
   width: 100px;
   object-fit: cover;
 }
 
-.home-book-info {
+.book-list-books-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,13 +47,13 @@
   
 }
 
-.home-book-info p {
+.book-list-books-info p {
   padding-top: 16px;
   font-size: 16px;
   color: #333333;
 }
 
-.home-book-info button {
+.book-list-books-info button {
   align-self: flex-start;
   background-color: #4682b4;
   color: white;
@@ -74,7 +64,7 @@
   cursor: pointer;
 }
 
-.home-book-info button:hover {
+.book-list-books-info button:hover {
   background-color: #36648b;
 }
 

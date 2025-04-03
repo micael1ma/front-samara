@@ -43,16 +43,16 @@ function Home() {
   }, []);
 
   return (
-    <div className="home-container-cretralizar">
-      <div className="home-container">
+    <div className="container-cretralizar">
+      <div className="book-list-container">
         <Header />
 
-        <div className="home-grid">
-          <h1 className="home-titulo">Livros emprestados</h1>
+        <div className="book-list-grid">
+          <h1 className="book-list-title">Livros emprestados</h1>
           {books.map((book) => (
-            <div className="home-livro-container" key={book.id}>
+            <div className="book-list-books-container" key={book.id}>
               <img src={book.imgUrl} alt="Book Cover" />
-              <div className="home-book-info">
+              <div className="book-list-books-info">
                 <p>{book.name}</p>
                 <button onClick={() => returnBook(book._id)}>Devolver</button>
               </div>
@@ -61,7 +61,6 @@ function Home() {
         </div>
 
         <Footer />
-          
       </div>
     </div>
   );
