@@ -6,6 +6,7 @@ import './style.css';
 
 //Components
 import Header from '../../components/header';
+import Footer from '../../components/footer';
 
 import { useState, useEffect } from 'react';
 
@@ -59,9 +60,8 @@ function Home() {
           ))}
         </div>
 
-        <footer>
-          <div></div>
-        </footer>
+        <Footer />
+          
       </div>
     </div>
   );

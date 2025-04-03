@@ -49,4 +49,9 @@ body{
   color: #4682b4;
 }
 
+/* Footer  */
+footer{
+  min-height: 200px;
+}
+
 
