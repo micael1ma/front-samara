@@ -1,52 +1,52 @@
 import api from '../../services/api';
 import './style.css';
 import bookImage from '../../assets/book.png';
+import AddBook from '../../components/addBook';
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Home() {
+function Admin() {
+  // Navigate
   const navigate = useNavigate();
 
-  const user = localStorage.getItem('userName');
-  const userId = localStorage.getItem('userId');
-  const token = localStorage.getItem('authToken');
-
-  const [books, setBooks] = useState([]);
-
-  async function getBooks() {
-    const responseBooks = await api.get('/api/book');
-    const allBooks = responseBooks.data;
-    const availableBooks = allBooks.filter((book) => !book.rented);
-    setBooks(availableBooks);
-  }
-
-  async function landBook(bookId) {
-    try {
-      await api.put(
-        `/api/bookrent/${bookId}`,
-        {
-          userId: userId,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-      getBooks();
-    } catch (error) {
-      alert('Erro ao pegar livro.');
-    }
-  }
-
+  // Log Out function
   async function logOut() {
     localStorage.clear();
     navigate('/login');
   }
 
+  const [books, setBooks] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  // Token
+  const token = localStorage.getItem('authToken');
+
+  // Get Books
+  async function getBooks() {
+    const responseBooks = await api.get('/api/book');
+    setBooks(responseBooks.data);
+    console.log(responseBooks.data);
+  }
+
+  // Add Book
+  async function addBook() {
+    const responseBook = await api.post('/api/book');
+  }
+
+  // Get Users
+  async function getUser() {
+    const responseUsers = await api.get('/api/user', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    setUsers(responseUsers.data);
+  }
+
   useEffect(() => {
     getBooks();
+    getUser();
   }, []);
 
   return (
@@ -55,7 +55,7 @@ function Home() {
         <header className="home-header">
           <div>
             <img src={bookImage} alt="Livros" />
-            <h1>Bem vindo {user}</h1>
+            <h1>Admin</h1>
           </div>
           <div>
             <button type="button" onClick={() => navigate('/admin')}>
@@ -73,12 +73,33 @@ function Home() {
 
         <div className="home-grid">
           <h1 className="home-titulo">Livros disponiveis</h1>
+
+          <AddBook />
+
           {books.map((book) => (
             <div className="home-livro-container" key={book._id}>
               <img src={book.imgUrl} alt="Book Cover" />
               <div className="home-book-info">
                 <p>{book.name}</p>
-                <button onClick={() => landBook(book._id)}>Alugar</button>
+                <p>{book.user && book.user.name ? 'Alugado' : 'Não alugado'}</p>
+                <p>
+                  {book.user && book.user.name
+                    ? 'User: ' + book.user.name
+                    : ' '}
+                </p>
+                <button></button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="home-grid">
+          <h1 className="home-titulo">Usuarios</h1>
+          {users.map((user) => (
+            <div className="home-livro-container" key={user._id}>
+              <div className="home-book-info">
+                <p>{user.name}</p>
+                <p>{user.email}</p>
               </div>
             </div>
           ))}
@@ -92,4 +113,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Admin;

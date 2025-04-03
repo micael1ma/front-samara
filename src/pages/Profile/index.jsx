@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 function Home() {
   const navigate = useNavigate();
 
-  const user = localStorage.getItem('userName');
   const userId = localStorage.getItem('userId');
   const token = localStorage.getItem('authToken');
 
