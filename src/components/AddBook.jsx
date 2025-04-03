@@ -2,7 +2,7 @@ import { useState } from 'react';
 import api from '../services/api';
 import './AddBookModal.css';
 
-const AddBook = () => {
+const AddBook = ({ refreshBooks }) => {
   const token = localStorage.getItem('authToken');
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState('');
@@ -23,6 +23,7 @@ const AddBook = () => {
       alert('Book added!');
       clear();
       setIsOpen(false); // Fecha o modal após adicionar
+      refreshBooks();
     } catch (error) {
       alert(
         'Error error when book: ' +

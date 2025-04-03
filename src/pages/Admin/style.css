@@ -19,13 +19,31 @@
 }
 
 .user-list-users-container {
-  display: flex;
   padding: 16px;
   border-radius: 8px;
   background-color: #ffffff;
 }
 
 .user-list-users-info p {
-
   font-size: 16px;
+}
+
+.user-list-users-info{
+  display: flex;
+  flex-direction: row;
+  place-content: space-between;
+}
+
+.user-list-users-info button{
+  background-color: #f44336;
+  color: #ffffff;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 8px;
+ 
+}
+
+.user-list-users-info button:hover{
+  background-color: #d32f2f;
+
 }

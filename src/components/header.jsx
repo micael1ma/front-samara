@@ -29,21 +29,21 @@ const Header = () => {
       </div>
       <div>
         <button className={isActive('/')} onClick={() => navigate('/')}>
-          Acervo
+          Collection
         </button>
         <button
           className={isActive('/profile')}
           onClick={() => navigate('/profile')}
         >
-          Seu perfil
+          Your Profile
         </button>
         <button
           className={isActive('/admin')}
           onClick={() => navigate('/admin')}
         >
-          Administrador
+          Administrator
         </button>
-        <button onClick={logOut}>Sair</button>
+        <button onClick={logOut}>Log Out</button>
       </div>
     </header>
   );

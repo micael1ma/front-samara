@@ -24,8 +24,6 @@ function Admin() {
 
   //Delete Book
   async function deleteBook(bookId) {
-    console.log(token)
-    console.log(bookId)
     await api.delete(`/api/book/${bookId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -44,6 +42,15 @@ function Admin() {
     setUsers(responseUsers.data);
   }
 
+  async function deleteUser(userId) {
+    await api.delete(`/api/user/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    getUser();
+  }
+
   useEffect(() => {
     getBooks();
     getUser();
@@ -54,17 +61,14 @@ function Admin() {
       <div className="book-list-container">
         <Header />
         <div className="book-list-grid border">
-          <h1 className="book-list-title">Livros disponiveis</h1>
+          <h1 className="book-list-title">Available Books</h1>
           {books.map((book) => (
             <div className="book-list-books-container" key={book._id}>
               <img src={book.imgUrl} alt="Book Cover" />
-
               <div className="book-list-books-info">
                 <div>
                   <p>{book.name}</p>
-                  <p>
-                    {book.user && book.user.name ? 'Alugado' : 'Não alugado'}
-                  </p>
+                  <p>{book.user && book.user.name ? 'Rented' : 'Not Rented'}</p>
                   <p>
                     {book.user && book.user.name
                       ? 'User: ' + book.user.name
@@ -80,17 +84,21 @@ function Admin() {
               </div>
             </div>
           ))}
-          <AddBook />
+          <AddBook refreshBooks={getBooks} />
         </div>
 
         <div className="user-list-grid border">
-          <h1 className="user-list-title">Usuarios</h1>
+          <h1 className="user-list-title">Users</h1>
           {users.map((user) => (
             <div className="user-list-users-container" key={user._id}>
               <div className="user-list-users-info">
-                <p>Name: {user.name}</p>
-                <p>Email: {user.email}</p>
-                <p>Books rented: 1</p>
+                <div>
+                  <p>Name: {user.name}</p>
+                  <p>Email: {user.email}</p>
+                </div>
+                <button type="button" onClick={() => deleteUser(user._id)}>
+                  Delete
+                </button>
               </div>
             </div>
           ))}
