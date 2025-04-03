@@ -9,3 +9,44 @@ body{
   background: linear-gradient(45deg, #b0e0e6, #4682b4);
 }
 
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.header div{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 12px;
+}
+
+.header img{
+  max-height: 50px;
+  cursor: pointer;
+}
+
+.header h1{
+  color: #f7f7f7;
+}
+
+.header button{
+  background: none;
+  border: none;
+  padding: 8px;
+  color: #f7f7f7;
+  cursor: pointer;
+}
+
+.header button.active-button {
+  color: #4682b4; 
+}
+
+.header button:hover{
+  color: #4682b4;
+}
+
+

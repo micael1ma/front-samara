@@ -13,24 +13,28 @@ const Header = () => {
     return 'Not defined';
   }
 
+  function isActive(path) {
+    return location.pathname === path ? 'active-button' : '';
+  }
+
   async function logOut() {
     localStorage.clear();
     navigate('/login');
   }
   return (
-    <header className="home-header">
+    <header className="header">
       <div>
         <img src={bookImage} alt="Logo" onClick={() => navigate('/')} />
         <h1>{getWelcome()}</h1>
       </div>
       <div>
-        <button type="button" onClick={() => navigate('/')}>
+        <button className={isActive('/')} onClick={() => navigate('/')}>
           Acervo
         </button>
-        <button type="button" onClick={() => navigate('/profile')}>
+        <button className={isActive('/profile')} onClick={() => navigate('/profile')}>
           Seu perfil
         </button>
-        <button type="button" onClick={() => navigate('/admin')}>
+        <button className={isActive('/admin')} onClick={() => navigate('/admin')}>
           Administrador
         </button>
         <button onClick={logOut}>Sair</button>

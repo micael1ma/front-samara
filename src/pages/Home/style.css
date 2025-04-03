@@ -9,39 +9,7 @@
   flex-direction: column;
 }
 
-.home-header {
-  display: flex;
-  justify-content: space-between;
-  max-width: 1200px;
-  padding: 20px;
-}
 
-.home-header div{
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  font-size: 12px;
-}
-
-.home-header img{
-  max-height: 50px;
-}
-
-.home-header h1{
-  color: #f7f7f7;
-}
-
-.home-header button{
-  background: none;
-  border: none;
-  padding: 8px;
-  color: #f7f7f7;
-  cursor: pointer;
-}
-
-.home-header button:hover{
-  color: #4682b4;
-}
 
 .home-titulo{
   align-self: center;
