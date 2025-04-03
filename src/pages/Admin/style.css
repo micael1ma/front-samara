@@ -1,3 +1,7 @@
+.border{
+  border-radius: 8px  8px 0px 0px;
+}
+
 .user-list-grid {
   background-color: #f7f7f7;
   width: 100%;

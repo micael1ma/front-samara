@@ -20,12 +20,18 @@ function Admin() {
   async function getBooks() {
     const responseBooks = await api.get('/api/book');
     setBooks(responseBooks.data);
-    console.log(responseBooks.data);
   }
 
-  // Add Book
-  async function addBook() {
-    const responseBook = await api.post('/api/book');
+  //Delete Book
+  async function deleteBook(bookId) {
+    console.log(token)
+    console.log(bookId)
+    await api.delete(`/api/book/${bookId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    getBooks();
   }
 
   // Get Users
@@ -47,28 +53,37 @@ function Admin() {
     <div className="container-cretralizar">
       <div className="book-list-container">
         <Header />
-        <div className="book-list-grid">
+        <div className="book-list-grid border">
           <h1 className="book-list-title">Livros disponiveis</h1>
-          
           {books.map((book) => (
             <div className="book-list-books-container" key={book._id}>
               <img src={book.imgUrl} alt="Book Cover" />
+
               <div className="book-list-books-info">
-                <p>{book.name}</p>
-                <p>{book.user && book.user.name ? 'Alugado' : 'Não alugado'}</p>
-                <p>
-                  {book.user && book.user.name
-                    ? 'User: ' + book.user.name
-                    : ' '}
-                </p>
-                <button></button>
+                <div>
+                  <p>{book.name}</p>
+                  <p>
+                    {book.user && book.user.name ? 'Alugado' : 'Não alugado'}
+                  </p>
+                  <p>
+                    {book.user && book.user.name
+                      ? 'User: ' + book.user.name
+                      : ' '}
+                  </p>
+                </div>
+                <div className="book-list-books-info-button">
+                  <button>Edit</button>
+                  <button type="button" onClick={() => deleteBook(book._id)}>
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
           ))}
           <AddBook />
         </div>
 
-        <div className="user-list-grid">
+        <div className="user-list-grid border">
           <h1 className="user-list-title">Usuarios</h1>
           {users.map((user) => (
             <div className="user-list-users-container" key={user._id}>
