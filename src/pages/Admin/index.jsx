@@ -49,7 +49,7 @@ function Admin() {
         <Header />
         <div className="book-list-grid">
           <h1 className="book-list-title">Livros disponiveis</h1>
-          {/* <AddBook /> */}
+          
           {books.map((book) => (
             <div className="book-list-books-container" key={book._id}>
               <img src={book.imgUrl} alt="Book Cover" />
@@ -65,6 +65,7 @@ function Admin() {
               </div>
             </div>
           ))}
+          <AddBook />
         </div>
 
         <div className="user-list-grid">

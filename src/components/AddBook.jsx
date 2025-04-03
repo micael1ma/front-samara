@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import api from '../services/api';
+import './AddBookModal.css';
 
-const addBook = () => {
+const AddBook = () => {
   const token = localStorage.getItem('authToken');
-
   const [isOpen, setIsOpen] = useState(false);
-
   const [name, setName] = useState('');
   const [author, setAuthor] = useState('');
   const [description, setDescription] = useState('');
@@ -14,18 +13,22 @@ const addBook = () => {
   async function handleAddBook(e) {
     e.preventDefault();
 
-    const book = {
-      name,
-      author,
-      description,
-      imgURL,
-    };
+    try {
+      const book = { name, author, description, imgURL };
 
-    api.post('/api/book', book, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+      await api.post('/api/book', book, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      alert('Book added!');
+      clear();
+      setIsOpen(false); // Fecha o modal após adicionar
+    } catch (error) {
+      alert(
+        'Error error when book: ' +
+          (error.response?.data?.message || error.message),
+      );
+    }
   }
 
   function clear() {
@@ -36,53 +39,78 @@ const addBook = () => {
   }
 
   return (
-    <div>
-      {/* Botão para abrir o modal */}
-      <button onClick={() => setIsOpen(true)}>Adicionar Livro</button>
+    <div className="add-book-container">
+      <button className="add-book-button" onClick={() => setIsOpen(true)}>
+        +
+      </button>
 
-      {/* Modal estilo "alert" */}
+      {/* Modal */}
       {isOpen && (
-        <div>
-          <h2>Adicionar Livro</h2>
-          <form onSubmit={handleAddBook}>
-            <input
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Author"
-              value={author}
-              onChange={(e) => setAuthor(e.target.value)}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-            />
-            <input
-              type="text"
-              placeholder="IMGurl"
-              value={imgURL}
-              onChange={(e) => setImgURL(e.target.value)}
-              required
-            />
-            <button type="submit">Adicionar</button>
-            <button onClick={clear}>Limpar</button>
-            <button onClick={() => setIsOpen(false)} type="button">
-              Cancelar
-            </button>
-          </form>
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h2>New Book</h2>
+
+            <form onSubmit={handleAddBook}>
+              <div className="form-group">
+                <label>Title:</label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Author:</label>
+                <input
+                  type="text"
+                  value={author}
+                  onChange={(e) => setAuthor(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Description:</label>
+                <textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Image URL:</label>
+                <input
+                  type="url"
+                  value={imgURL}
+                  onChange={(e) => setImgURL(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="modal-buttons">
+                <button type="submit" className="submit-button">
+                  Save
+                </button>
+                <button type="button" onClick={clear} className="clear-button">
+                  Clear
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsOpen(false)}
+                  className="cancel-button"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </div>
   );
 };
 
-export default addBook;
+export default AddBook;
