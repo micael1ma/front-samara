@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import api from '../services/api';
 
-const AddBook = () => {
+const addBook = () => {
   const token = localStorage.getItem('authToken');
 
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +11,7 @@ const AddBook = () => {
   const [description, setDescription] = useState('');
   const [imgURL, setImgURL] = useState('');
 
-  async function handleSubmit(e) {
+  async function handleAddBook(e) {
     e.preventDefault();
 
     const book = {
@@ -21,13 +21,11 @@ const AddBook = () => {
       imgURL,
     };
 
-    const response = api.post('/api/book', book, {
+    api.post('/api/book', book, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-
-    console.log(credentials);
   }
 
   function clear() {
@@ -46,7 +44,7 @@ const AddBook = () => {
       {isOpen && (
         <div>
           <h2>Adicionar Livro</h2>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleAddBook}>
             <input
               type="text"
               placeholder="Name"
@@ -87,4 +85,4 @@ const AddBook = () => {
   );
 };
 
-export default AddBook;
+export default addBook;

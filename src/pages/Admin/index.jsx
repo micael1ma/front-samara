@@ -1,21 +1,17 @@
+// Api 
 import api from '../../services/api';
+
+//Css
 import './style.css';
-import bookImage from '../../assets/book.png';
+
+ //Components
 import AddBook from '../../components/addBook';
+import Header from '../../components/header';
 
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+
 
 function Admin() {
-  // Navigate
-  const navigate = useNavigate();
-
-  // Log Out function
-  async function logOut() {
-    localStorage.clear();
-    navigate('/login');
-  }
-
   const [books, setBooks] = useState([]);
   const [users, setUsers] = useState([]);
 
@@ -52,25 +48,7 @@ function Admin() {
   return (
     <div className="home-container-cretralizar">
       <div className="home-container">
-        <header className="home-header">
-          <div>
-            <img src={bookImage} alt="Livros" />
-            <h1>Admin</h1>
-          </div>
-          <div>
-            <button type="button" onClick={() => navigate('/admin')}>
-              Administrador
-            </button>
-            <button type="button" onClick={() => navigate('/')}>
-              Acervo
-            </button>
-            <button type="button" onClick={() => navigate('/profile')}>
-              Seu perfil
-            </button>
-            <button onClick={logOut}>Sair</button>
-          </div>
-        </header>
-
+        <Header />
         <div className="home-grid">
           <h1 className="home-titulo">Livros disponiveis</h1>
 

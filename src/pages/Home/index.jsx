@@ -1,13 +1,15 @@
+// Api 
 import api from '../../services/api';
+
+//Css
 import './style.css';
-import bookImage from '../../assets/book.png';
+
+ //Components
+ import Header from '../../components/header';
 
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 function Home() {
-  const navigate = useNavigate();
-
   const user = localStorage.getItem('userName');
   const userId = localStorage.getItem('userId');
   const token = localStorage.getItem('authToken');
@@ -40,11 +42,6 @@ function Home() {
     }
   }
 
-  async function logOut() {
-    localStorage.clear();
-    navigate('/login');
-  }
-
   useEffect(() => {
     getBooks();
   }, []);
@@ -52,25 +49,7 @@ function Home() {
   return (
     <div className="home-container-cretralizar">
       <div className="home-container">
-        <header className="home-header">
-          <div>
-            <img src={bookImage} alt="Livros" />
-            <h1>Bem vindo {user}</h1>
-          </div>
-          <div>
-            <button type="button" onClick={() => navigate('/admin')}>
-              Administrador
-            </button>
-            <button type="button" onClick={() => navigate('/')}>
-              Acervo
-            </button>
-            <button type="button" onClick={() => navigate('/profile')}>
-              Seu perfil
-            </button>
-            <button onClick={logOut}>Sair</button>
-          </div>
-        </header>
-
+        <Header />
         <div className="home-grid">
           <h1 className="home-titulo">Livros disponiveis</h1>
           {books.map((book) => (
